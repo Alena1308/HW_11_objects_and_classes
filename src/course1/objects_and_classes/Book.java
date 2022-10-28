@@ -1,5 +1,7 @@
 package course1.objects_and_classes;
 
+import java.util.Objects;
+
 public class Book {
     private String name;
     private Author author;
@@ -9,16 +11,33 @@ public class Book {
         this.author = author;
         this.year = year;
     }
-    public String getName () {
-        return this.name;
+    @Override
+    public String toString() {
+        return name + " " + author.toString() + " " + year;
     }
-    public Author getAuthor () {
-        return this.author;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return year == book.year && Objects.equals(name, book.name) && Objects.equals(author, book.author);
     }
-    public int getYear () {
-        return this.year;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, year);
     }
-    public void setYear(int year) {
-        this.year = year;
-    }
+    //    public String getName () {
+//        return this.name;
+//    }
+//    public Author getAuthor () {
+//        return this.author;
+//    }
+//    public int getYear () {
+//        return this.year;
+//    }
+//    public void setYear(int year) {
+//        this.year = year;
+//    }
 }
